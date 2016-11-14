@@ -1,0 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rcargou <rcargou@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/09/29 11:17:59 by rcargou           #+#    #+#             */
+     Updated: 2015/09/30 18:03:52 by rcargou          ###   ########.fr         
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "run.h"
+
+int main (void)
+{
+	t_env env;
+
+	srand(clock());
+	env.camera.dir.y = -1;
+	env.walls = NULL;
+	env.camera.pos.y = 5;
+	env.vision = VISION;
+	procedural_gen(&(env.walls), &env);
+	display(&env);
+
+	env.camera.dir.y = 1;
+	env.camera.dir.y = -1;
+	env.camera.pos.y-= 0.8;
+    procedural_gen(&(env.walls), &env);
+    display(&env); 
+
+
+    env.dist_dir++;
+    env.camera.dir.x = 1;
+    env.camera.dir.y = 0;
+    env.camera.pos.x+= 1;
+    procedural_gen(&(env.walls), &env);
+    display(&env);
+	return (0);
+}
